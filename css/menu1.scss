@@ -1,0 +1,209 @@
+@charset "utf-8";
+@import '_mixin.scss';
+@import 'common.scss';
+
+//menu1
+
+main{
+    @include flex(center,flex-start,row);
+    .left{
+        width: 50%; height: 100vh;
+        background: url('../img/menu1/detail_bg.png') no-repeat;
+        background-size: 100%;
+        @include flex(center,center,row);
+
+
+        .left_insta{
+            
+            // position: fixed;
+            // top: 50%; left: 25%;
+            // transform: translate(-50%, -50%);
+
+            width: 50%;
+            background: white;
+            position:relative;
+            display: none;
+            &>img:#{$type}(1){
+                width: 90%;
+                display: block;
+                margin: 2% auto;
+            }
+            &>img:#{$type}(2){
+                padding-left: 5%;
+            }
+            p:#{$type}(1){
+                margin: 2% 20% ;
+                padding-bottom: 3%;
+            }
+            p:#{$type}(2){
+                font-size: 2rem;
+                @include absol(top,43px,left,0);
+                transform: translateX(-50%);
+                span{
+                    display: block;
+                    margin: 2px;
+                    background: #fcf2bd;
+                    font-weight: 600;
+                }
+            }
+            .btn_go{
+                @include bestaward(right,bottom,50%,50%);
+                // // img:#{$type}(1){width: 30%;}
+                img:#{$type}(2){width: 30%;}
+            }
+        }//left_insta
+        .left_youtu{
+            // display: none;
+            background: #fff;
+            width: 70%;
+            text-align: center;
+            position: relative;
+            
+            iframe{
+                display: inline-block;
+                width :90%;
+                height: 50vh;
+                padding: 2% 0.1% 15% 0.1%;
+            }
+            p{
+                @include absol(bottom,5%,left,0);
+                transform: translateX(-10%);
+                span{
+                    display: inline-block;
+                    font-size: 2rem;
+                    background-color: #fcf2bd;
+                }
+            }
+            .btn_go{
+                @include bestaward(right,bottom,50%,50%);
+                img:#{$type}(1){width: 20%;}
+                img:#{$type}(2){width: 20%;}
+            }
+        }
+    } //left end
+    .right{
+        width: 50%;
+
+        
+        .con1{
+            @include right_layout(90%,0);
+            @include flex(center,center,row);
+            .con1_lft{
+                padding: 20% 0 10%;
+                div{
+                    padding-left: 10%;
+                    width: 80%;
+                    img{width: 100%;}
+                }
+                p{
+                    padding-left: 10%;
+                    font-size: 2.5rem;
+                    font-weight: 400;
+                    color: #e39f9a;
+                    &:#{$type}(1){padding-top: 10%;}
+                }
+            }
+            .con1_rt{
+                .select{
+                    width: 70%;
+                    position: relative;
+                    text-align: right;
+                    p{
+                        width: 100%;
+                        img{width: 15%;}
+                    }
+        
+                    p::after{
+                        content: url('../img/index/arrow_down.png');
+                        @include absol(right,0,top,0);
+                        transform: translate(150%,0);
+                    }
+                    ul{
+                        display: none;
+                        @include absol(bottom,0,right,0);
+                        transform: translateY(100%);
+                        width: 100%;
+                        
+                        li{
+                            padding: 0.2%;
+                            a{
+                                display: block;
+                                width: 100%;
+                                img{width: 30%;}
+                            }
+                        }
+                    }//ul end
+                    p:hover ~ ul{display: block;}
+                }//select end
+                p{
+                    font-size: 2.5rem;
+                    font-weight: 400;
+                    color: #e39f9a;
+                    &:#{$type}(2){padding-bottom: 10%;}
+                }
+                div{
+                    width: 80%;
+                    img{width: 100%;}
+                }
+            }
+        }
+        .con2{
+            @include right_layout(80%,5%);
+            img{width: 100%;}
+        }
+        .con3{
+            @include right_layout(90%,10%);
+            @include flex(center,center,row);
+            .con3_lft{
+                p{
+                    width: 80%;
+                    font-size: 2.5rem;
+                    font-weight: 400;
+                    color: #e39f9a;
+                    text-align: right;
+                    &:#{$type}(2){padding-bottom: 10%;}
+                }
+                div{
+                    width: 80%;
+                    img{width: 100%;}
+                }
+            }
+            .con3_rt{
+                div{
+                    width: 60%;
+                    padding-bottom: 20%;
+                    img{width: 100%;}
+                }
+                p{
+                    width: 80%;
+                    font-size: 2.5rem;
+                    font-weight: 400;
+                    color: #e39f9a;
+                    text-align: right;
+                }
+            }
+        }
+        .con4{
+            @include right_layout(90%,5%);
+            @include flex(center,center,row);
+            .con4_left{
+                width: 100%;
+                p{
+                    width: 80%;
+                    font-size: 2.5rem;
+                    font-weight: 400;
+                    color: #e39f9a;
+                }
+            }
+            .con4_rt{
+                width: 100%;
+                img{width: 80%;}
+            }
+        }
+        .con5{
+            @include right_layout(60%,10%);
+            img{width: 100%;}
+        }
+    } //right end
+
+}

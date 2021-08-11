@@ -1,0 +1,252 @@
+$type : nth-of-type;
+$maincolor : #61544f;
+$subcolor : rgb(225, 120, 119);
+// 속성:값 #{$a}: $b; 기억하기☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆
+ 
+@mixin regular{
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 400;
+}
+@mixin flex($a, $b, $c) {
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    flex-direction: $c;
+}
+@mixin absol($a,$b,$c,$d){
+    position:absolute;
+    #{$a}: $b;
+    #{$c}: $d;
+}
+@mixin center100 {
+    width: 100%;
+    text-align: center;
+}
+
+////////////////////////////////header
+@mixin submenu_bg {
+    width: 100%;
+    background: #fff;
+}
+@mixin submenu_hover{
+    display: inline-block;
+    position: relative;
+    font-size: 1rem;
+}
+@mixin submenu_after($a,$b){
+    content: '>';
+    display: block;
+    @include absol(right,0,top,50%);
+    transform: translate($a,$b);    
+}
+
+@mixin menu_sticker {
+    text-align: center;
+    @include absol(top,0,left,0);
+    transform: translateY(50%);   
+}
+
+
+@mixin submenu($a){  
+    @include flex(center,flex-start,row);
+    // flex-shrink: 0;
+    @include submenu_bg;
+        ul{
+            width: 11%;
+            padding-bottom:1%;
+            li{
+                padding-left: 10%;
+                margin: 1% 0;
+            }
+                           
+            li:#{$type}(1){
+                padding-left: 0;
+                color: $subcolor;
+            }
+
+           @for $i from 2 to $a {
+                li:nth-of-type(#{$i}){
+                    padding: 6% 6% 2% 14%;
+                    // position: relative;
+                    a{
+                        position:relative;
+                        display: inline-block;
+                        img{  
+                            width: 30px;
+                            @include absol(bottom,0,left,0);
+                            transform: translate(-110%,3%);
+                        } 
+                    }
+                    
+                }
+            }
+        }    
+}
+
+@mixin submenuTransiDefault(){
+    transition: .5s;
+    overflow: hidden;
+    height: 0px
+}
+@mixin submenuTransition($a,$b){
+    display: $a;
+    height: $b;
+}
+
+/////////////////////////////////////index
+@mixin bestaward($a,$b,$c,$d) {
+
+    @include absol(#{$a},0,#{$b},0);
+    width: 100%;
+    img{
+        &:#{$type}(1){
+            @include absol(#{$a},0,#{$b},0);
+            transform: translate($c, $d);
+            width: 30%;
+        }
+        &:#{$type}(2){
+            z-index: 2;
+            @include absol(#{$a},0,#{$b},0);
+            transform: translate($c, $d);
+            width: 15%;
+        }
+    }
+}
+
+@mixin ad_hover1($a,$b,$c,$d,$e,$f) {
+    .first{
+        // display: none;
+        width: 100%;
+        margin: $a $b $c $d;
+        position:relative;
+        transition: 1s;
+        img{
+            width:100%
+        }
+        .first_txt{
+            font-size: 2.5rem;
+            
+            @include absol(bottom,43px,$e,0);
+            transform: translateX($f);
+            @include flex(flex-start,flex-start,column);
+            span{
+                display: inline-block;
+                margin: 2px;
+                background: #fcf2bd;
+                font-weight: 400;
+                
+                
+            }
+        }
+    }
+    .second{
+        // display: none;
+        width: 100%;
+        margin: $a $b $c $d;
+        @include absol(top,0,left,0);
+        z-index: -1; opacity: 0; transition: 1s;
+        img:#{$type}(1){
+            width: 100%;
+        }
+        img:#{$type}(2){
+            width: 80%;
+            @include absol(top,0,left,50%);
+            transform: translateX(-50%);
+        }
+        h6{
+            font-size: 2rem;
+            @include absol(top,5%,left,0);
+            @include center100;
+        }
+        .sec_subtxt{
+            font-weight: 400;
+            @include absol(top,15%,left,0);
+            @include center100;
+        }
+        .sec_sns{
+            font-weight: 400;
+            @include absol(bottom,15%,left,0);
+            @include center100;
+        }
+        .sec_snsid{
+            font-weight: 400;
+            @include absol(bottom,10%,left,0);
+            @include center100;
+        }
+    }
+}
+
+@mixin show{  //자바로 스크롤이벤트
+    transform: translate(0, +100px);
+    opacity: 0;
+    &.showup { 
+        animation: showup 1s forwards;
+    //     transform: none;
+    //     opacity: 1;
+    }
+    &.showdown { 
+        animation: showdown 1s forwards;
+        // transform: translate(-10px, +100px);
+        // opacity: 0;
+    }
+}
+
+//////////////////////////////// 여기부터는 keyframes
+
+
+@keyframes circle {  //좌측상단 스티커회전
+    0%{transform: translate(-50%,-50%) rotate(0deg) }
+    100%{transform: translate(-50%,-50%) rotate(360deg)}
+}
+@keyframes circle2 {  //우측상단 스티커회전
+    0%{transform: translate(+50%,-50%) rotate(0deg) }
+    100%{transform: translate(+50%,-50%) rotate(360deg)}
+}
+
+@keyframes showup {  //
+    0%{
+        transform: translate(-10px, +100px);
+        opacity: 0;
+    }
+    100%{
+        transform: none;
+        opacity: 1;
+    }
+    
+}
+@keyframes showdown {
+    0%{
+        transform: none;
+        opacity: 1;
+    }
+    100%{
+        transform: translate(-10px, +100px);
+        opacity: 0;
+    }
+}
+@keyframes goup {
+    0%{transform: translateY(100%);}
+    100%{transform: translateY(0);}
+    
+}
+@keyframes opacity {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+    
+}
+
+@keyframes txtmoving {
+    0%{
+        transform: translateX(1866px);
+    }
+    100%{
+        transform: translateX(-1866px);
+    }
+    
+}
+
+
+////////////////////////////////////////menu1
+@mixin right_layout($a,$b){
+    width: $a; margin: $b auto;
+}
