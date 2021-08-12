@@ -11,7 +11,7 @@ $(function(){
         const mainMenu = document.querySelectorAll('nav p');
         let subMenu, conSub;
         conSub = document.querySelectorAll('.sub');
-        console.log(conSub);
+        
         //2. language
         const elLang = document.querySelector('.select');
 
@@ -31,8 +31,7 @@ $(function(){
         const triSpan = document.querySelectorAll('.trigger span');
         const triMenu = document.querySelector('.tri_menu');
 
-        //5. roll top
-        const rollTop = document.querySelector('.roll_top');
+        
         
 
         
@@ -82,7 +81,9 @@ $(function(){
 
         function searchHeader(){
             if( srchImg[0].classList.contains('disapr') ){
-                elHeader.classList.add('active');
+                elHeader.style.background = '#fff';
+            }else{
+                elHeader.style.background = 'none';
             }
         }
         function srchToggle(){
@@ -113,7 +114,7 @@ $(function(){
             .then( data=>callback(data) );
 
             function callback(data){
-
+                
                 data.best_srch.forEach(function(v,k){
                     
                     tagList +=
@@ -127,6 +128,7 @@ $(function(){
                 bestSrch.innerHTML = tagList;
 
             }//callback end
+
         }//init end
 
         window.onload = init;
@@ -138,6 +140,27 @@ $(function(){
             }
             triMenu.classList.toggle('none');
         });
+
+
+        
+
+        
+        //1. 헤더 하위메뉴 호출 함수
+        
+
+        //2. language 함수
+        function lang(a,b){
+            elLang.children[0].style.backgroundImage = `url('img/index/arrow_${a}.png')`;
+            elLang.children[1].style.display = b ;
+        }
+
+    }
+
+    function top(){  //top btn
+
+        //5. roll top
+        const rollTop = document.querySelector('.roll_top');
+
 
         //5. roll top 생성
         window.addEventListener('scroll',function(){
@@ -159,21 +182,6 @@ $(function(){
             window.scrollTo({top:0,behavior:'smooth'});
         });
         
-
-        
-        //1. 헤더 하위메뉴 호출 함수
-        
-
-        //2. language 함수
-        function lang(a,b){
-            elLang.children[0].style.backgroundImage = `url('img/index/arrow_${a}.png')`;
-            elLang.children[1].style.display = b ;
-        }
-
-    }
-
-    function top(){  //top btn
-
     }
 
 

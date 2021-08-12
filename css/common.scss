@@ -142,7 +142,6 @@ header{
             .submenu-7{ //이벤트 하위메뉴
                 @include absol(bottom,0,left,0);
                 transform: translateY(100%);
-                @include flex(space-evenly,center,column);
                 @include submenu_bg; 
                 li{
                     padding-left: 72%;
@@ -155,8 +154,8 @@ header{
                 @include submenuTransiDefault;
                 
             } 
-            .submenu-5.hover{@include submenuTransition(flex,109px);}
-            p:nth-of-type(7):hover ~ .submenu-7{@include submenuTransition(flex,109px);}
+            .submenu-7.hover{@include submenuTransition(block,109px);}
+            p:nth-of-type(7):hover ~ .submenu-7{@include submenuTransition(block,109px);}
 
 
             p:hover a{
@@ -275,6 +274,7 @@ header{
                     color: #fff;
                     font-size: 2rem;;
                 }
+                input:focus{outline: none;}
                 button{
                     background: none;
                     @include absol(top,50%,right,0);
@@ -440,11 +440,17 @@ footer{
     .foot_1st{
         @include flex(space-between,center,row);
         padding: 1.5% 4%;
+        &>a {
+            width: 16%;
+            display: block;
+            img{width: 65%;}
+        }
         .foot_menu{
             width: 60%;
             text-align: center;
             span{
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+                color: #8a8a8a;
                 font-weight: 300;
                 display: inline-block;
                 padding: 0 1.5%;
@@ -452,7 +458,8 @@ footer{
             }
         }
         .sns{
-            width: 10%;
+            width: 16%;
+            text-align: right;
             a{
                 display: inline-block;
                 padding: 0 3%;
@@ -463,10 +470,16 @@ footer{
         text-align: center; 
         padding: 0.3% 0;}
     p:#{$type}(1){
-        span{font-weight: 400;}
+        span{
+            color: #8a8a8a;
+            font-weight: 400;
+        }
     }
     p:#{$type}(2){
-        a{font-weight: 400;}
+        a{
+            color: #8a8a8a;
+            font-weight: 400;
+        }
     }
     p:#{$type}(3){color: #c4c4c4;}
     
@@ -483,6 +496,9 @@ footer{
             color: rgb(118, 118, 118);
             appearance: none;
             
+        }
+        select:focus{
+            outline: none;
         }
     }
     

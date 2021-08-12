@@ -5,11 +5,10 @@
 //menu1
 
 main{
-    @include flex(center,flex-start,row);
+    @include flex(flex-end,flex-start,row);
     .left{
         width: 50%; height: 100vh;
-        background: url('../img/menu1/detail_bg.png') no-repeat;
-        background-size: 100%;
+        background: url('../img/menu1/detail_bg.png') 100% no-repeat;
         @include flex(center,center,row);
 
 
@@ -18,11 +17,10 @@ main{
             // position: fixed;
             // top: 50%; left: 25%;
             // transform: translate(-50%, -50%);
-
-            width: 50%;
+            
+            width: 58%;
             background: white;
             position:relative;
-            display: none;
             &>img:#{$type}(1){
                 width: 90%;
                 display: block;
@@ -48,12 +46,17 @@ main{
             }
             .btn_go{
                 @include bestaward(right,bottom,50%,50%);
-                // // img:#{$type}(1){width: 30%;}
+                img:nth-of-type(1){
+                    animation: circle3 6s 1s forwards linear;
+                }
                 img:#{$type}(2){width: 30%;}
             }
+
+            display:none;
         }//left_insta
-        .left_youtu{
-            // display: none;
+        .left_insta.block{display: block;}
+        .left_youtube{
+            
             background: #fff;
             width: 70%;
             text-align: center;
@@ -79,7 +82,9 @@ main{
                 img:#{$type}(1){width: 20%;}
                 img:#{$type}(2){width: 20%;}
             }
+            display: none;
         }
+        .left_youtube.block{display: block;}
     } //left end
     .right{
         width: 50%;
@@ -105,18 +110,20 @@ main{
             }
             .con1_rt{
                 .select{
-                    width: 70%;
+                    width: 81%;
                     position: relative;
                     text-align: right;
                     p{
-                        width: 100%;
-                        img{width: 15%;}
+                        display: inline-block;
+                        width: 21%;
+                        padding-right: 11%;
+                        img{width: 100%;}
                     }
         
                     p::after{
                         content: url('../img/index/arrow_down.png');
-                        @include absol(right,0,top,0);
-                        transform: translate(150%,0);
+                        @include absol(right,0,bottom,0);
+                        transform: translate(0,+8%);
                     }
                     ul{
                         display: none;
@@ -133,7 +140,8 @@ main{
                             }
                         }
                     }//ul end
-                    p:hover ~ ul{display: block;}
+                    ul.block{display: block;}
+                    // p:hover ~ ul{display: block;}
                 }//select end
                 p{
                     font-size: 2.5rem;

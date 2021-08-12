@@ -9,10 +9,10 @@
     background: url('../img/index/visual_bg.jpg') no-repeat;
     background-size: cover;
     display: flex;
+    overflow: hidden;
     div{
         font-size: 0;
         width: 50%;
-        overflow: hidden;
         &.visu_left{
         
             img{
@@ -31,14 +31,9 @@
                 }
                 .like{
                     @include bestaward(top,left,-50%,-50%);
-                    &:#{$type}(1){
-                        width: 70%;
-                        // animation: opacity .5s .5s forwards;
+                    img:nth-of-type(1){
+                        animation: circle 6s 1s forwards linear ;
                     }
-                    img:#{$type}(1){
-                        animation: circle 6s infinite linear;
-                    }
-                    
                 }
             }
         }
@@ -176,7 +171,7 @@ main{
             .award{
                 @include bestaward(top,right,+50%,-50%);
                 img:#{$type}(1){
-                    animation: circle2 6s infinite linear;
+                    animation: circle2 6s forwards linear;
                 }
             }
             .second {
@@ -235,6 +230,7 @@ main{
 }//main end
 .youtube {
     width: 100%;
+    overflow: hidden;
     background: url('../img/index/img_bg_blue.jpg') no-repeat;
     background-size: cover;
     position: relative;
@@ -246,22 +242,27 @@ main{
         width: 100%; 
         animation: txtmoving 50s infinite linear reverse;
     }
-    .adver{
-        width: 65%;
+    .adver{ 
+        width: 65%;  height: 71%;   
         background: #fff;
         border: 10px solid #fff; 
         @include absol(top,50%,left,50%);
         transform: translate(-50%, -50%); 
-        iframe{
+        iframe{ 
+            // z-index: -1; opacity: 0;
             width: 100%; height: 100%;
+        }
+        img{
+            width: 100%; opacity: 1; transition: .5s;
             @include absol(top,0,left,0);
         }
-        img{width: 100%;}
+           
         
     }
 }
 .album{
     width: 100%;
+    overflow: hidden;
     background: url('../img/index/img_bg_pink.jpg') no-repeat;
     background-size: cover;
     .album_box{
@@ -273,11 +274,29 @@ main{
             position: relative;
             margin: auto 3%;
             
-            img:#{$type}(1){position: relative;}
             img{
                 width: 100%;
                 @include absol(top,0,left,0);
             }
+            img:#{$type}(1){
+                position: relative;
+                transform: rotate(-6deg); //+ right down
+            }
+            img:#{$type}(2){transform: rotate(5deg);}
+            img:#{$type}(3){transform: rotate(-4deg);}
+            img:#{$type}(4){transform: rotate(3deg);}
+            img:#{$type}(5){transform: rotate(2deg);}
+            img:#{$type}(6){transform: translate(0, -2px);}
+            img:#{$type}(7){
+                transition: .5s;
+                transform: rotate(-2deg);
+            }
+            img:#{$type}(8){transition: .5s;}
+
+            img.odd_out {animation: slide_odd .5s ;}
+            img.odd_in {animation: slide_odd .5s reverse;}
+            img.even_out {animation: slide_even .5s;}
+            img.even_in {animation: slide_even .5s reverse;}
                 
         }
         a{
@@ -287,17 +306,23 @@ main{
             border-radius: 60px;
             position: relative;
             text-align: center; vertical-align: middle;
-            // @include flex(center,center,row);
-            .prenext{width: 50%;}
+            img{width: 50%;}
             
         }
         a:#{$type}(1)::before{
             content: '';
             display: block;
-            width: 800%;
+            width: 700px;
             border: 1px solid #fff;
-            @include absol(top,50%,left,-800%);
-            transform: translate(-50%,0);
+            @include absol(top,50%,right,100%);
+
+        }
+        a:#{$type}(2)::before{
+            content: '';
+            display: block;
+            width: 700px;
+            border: 1px solid #fff;
+            @include absol(top,50%,left,100%);
 
         }
         
