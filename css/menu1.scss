@@ -13,11 +13,6 @@ main{
 
 
         .left_insta{
-            
-            // position: fixed;
-            // top: 50%; left: 25%;
-            // transform: translate(-50%, -50%);
-            
             width: 58%;
             background: white;
             position:relative;
@@ -47,7 +42,7 @@ main{
             .btn_go{
                 @include bestaward(right,bottom,50%,50%);
                 img:nth-of-type(1){
-                    animation: circle3 6s 1s forwards linear;
+                    animation: circle3 6s 1s linear infinite;
                 }
                 img:#{$type}(2){width: 30%;}
             }
@@ -73,13 +68,16 @@ main{
                 transform: translateX(-10%);
                 span{
                     display: inline-block;
-                    font-size: 2rem;
+                    font-size: 1.5rem;
                     background-color: #fcf2bd;
                 }
             }
             .btn_go{
                 @include bestaward(right,bottom,50%,50%);
-                img:#{$type}(1){width: 20%;}
+                img:nth-of-type(1){
+                    width: 20%;
+                    animation: circle3 6s 1s linear infinite;
+                }
                 img:#{$type}(2){width: 20%;}
             }
             display: none;

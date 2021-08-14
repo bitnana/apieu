@@ -1,13 +1,18 @@
 window.addEventListener('DOMContentLoaded',function(){
 
+                                 
+
+                                
     //1.비주얼 
     //https://joshua-dev-story.blogspot.com/2020/11/javascript-css-scroll-animation.html
     $('.like img').offsetTop;
     console.log($('.like img').eq(1).offset().top);
 
-    //2.show up
+    //2.show up   (이)
     const header = document.querySelector('header');
-    const showImg = document.querySelectorAll('.show');
+    let showImg = document.querySelectorAll('.show');
+    const elLikeAward = document.querySelectorAll('.award, .like');
+
     let locaStart, locaEnd; 
     let start,end;
     
@@ -32,7 +37,50 @@ window.addEventListener('DOMContentLoaded',function(){
 
     });
 
-    //2.show up
+    //2. show up우선 기본적으로 해보기
+    const imgSpan = document.querySelectorAll('.first_txt span');
+    let papaHei,paHei,spanHei, totalHei,papa;
+    console.log(imgSpan[1].parentElement.parentElement.parentElement.parentElement.offsetTop);
+    console.log(imgSpan[1].parentElement.offsetTop);
+    console.log(imgSpan[1].offsetTop);
+    
+    //2. show up span
+    window.addEventListener('scroll',function(){
+
+        for(let i=0; i<imgSpan.length;i++){
+
+            spanHei = imgSpan[i].offsetTop;
+            paHei = imgSpan[i].parentElement.offsetTop;
+            papaHei = imgSpan[i].parentElement.parentElement.parentElement.parentElement.offsetTop;
+            totalHei = spanHei + paHei + papaHei;  //y좌표
+            papa = imgSpan[0].parentElement.parentElement.parentElement.parentElement;
+
+
+            if(window.innerHeight+window.scrollY >= totalHei +100){
+                imgSpan[i].classList.add('showup');
+            }
+            if(papa.classList.contains('showdown')){
+                imgSpan[i].classList.remove('showup');
+            }   
+      
+            // if(window.scrollY >= totalHei -200 ){
+            //     imgSpan[i].classList.remove('showup');
+            //     imgSpan[i].classList.add('showup');
+            // }
+               
+
+
+        }
+
+
+    });
+    //2. show up like&award
+    for(let i=0; i<elLikeAward.length; i++){
+
+        
+    }
+     
+    //2.show up  함수
     function showup(a,b){
         for(let i=0; i<showImg.length;i++){
 
@@ -66,69 +114,77 @@ window.addEventListener('DOMContentLoaded',function(){
         e.preventDefault();
         elYtimg.style = 'z-index:-1';
         elYoutube.src = "https://www.youtube.com/embed/0FbFBs8hS30?autoplay=1&controls=1&autohide=0&rel=0&wmode=transparent&showinfo=0&playsinline=1&allowScriptAccess=always&enablejsapi=1&origin=https%3A%2F%2Fwww.apieu.com&widgetid=1";
-
+        onYouTubePlayerAPIReady();
+        console.log(player);
     });
 
-    console.log(elYtimg.offsetHeight);
+    // This code loads the IFrame Player API code asynchronously.
+    let tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    let firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);    
 
-    // function onPlayerStateChange(event) {
-    //     if (event.data == 0) {
-    //       elYoutube.src = '';
-    //       elYtimg.style = 'z-index:1';
-    //     }
-    //   }
+    var player;
 
-    //4. slide
+    function onYouTubePlayerAPIReady() {
 
-    function init(){
-        
-        fetch('js/slide.json')
-        .then( res => res.json() )
-        .then( data=>callback(data) );
+        try {
+            player = new YT.Player('player', {
+                videoId : '0FbFBs8hS30',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        } catch (e) {}
 
-        console.log('성공');
-        function callback(data){
-            console.log('성공');
-        }
-        
-        // function callback(data){
-        //     console.log('성공');
-        //     data.slide.forEach(function(v,k){
-
-        //         tagList +=`<img src="${v.src}" alt="${v.alt}">`;
-
-        //     }); //slide foreach end
-
-        //     elSlide.innerHTML = tagList;
-
-        // } //callback end
-    } //init end
-
-    window.onload = init;
-
-    let last = elSlideImg.length -1;
-    let slideNum = elSlideImg[last].dataset.slide;
-
-    for(let i=0; i <elPreNext.length; i++){
-            elPreNext[i].addEventListener('click',function(e){
-                e.preventDefault();
-                
-                slideInOut(i);
-                elPageNum.textContent= `${elSlideImg.length-last}/${elSlideImg.length}`;
-                
-            }); //click end
     }
+
+    function onPlayerReady(event) {
+    	//유튜브 플레이어가 다 만들어지면 호출됨
+    }
+
+    function onPlayerStateChange(event) {
+        if (event.data === 0) {
+        	console.log('finish');
+        }
+    }
+
+
+
+
+
     
 
 
+
+
+
+    //4. slide
+
+    let last = elSlideImg.length-1;
+    let slideNum;
+    
+    for(let i=0; i <elPreNext.length; i++){
+        elPreNext[i].addEventListener('click',function(e){
+            e.preventDefault();
+
+            slideNum = elSlideImg[last].dataset.slide;
+            slideInOut(i);
+            
+            
+                        
+        }); //click end
+    } //prenext for end               
+    
+   
+
+    //4. slide 함수
     function slideInOut(a){
 
         if(a == 0){ //pre
-
-            
-            last = last +1;
-            if(last > elSlideImg.length -1){last = 0;}
-
+            elSlideImg[last].remove();
+            elSlide.prepend(elSlideImg[last]);
             if(slideNum%2 != 0 ){ // 맨뒤(html에서 첫번째)에 있는 사진 숫자가 홀수
                 elSlideImg.forEach(function(v,k){v.className = '';});
                 elSlideImg[last].className = 'odd_in';
@@ -136,13 +192,18 @@ window.addEventListener('DOMContentLoaded',function(){
                 elSlideImg.forEach(function(v,k){v.className = '';});
                 elSlideImg[last].className = 'even_in';
             }
+            
             // elSlideImg[last].remove();
-            // elSlide.append(elSlideImg[last]);
+            // elSlide.prepend(elSlideImg[last]);
+            // elSlide.insertBefore(elSlideImg[last],elSlideImg[1]);
+            last = last +1;
+            if(last > elSlideImg.length -1){last = 0;}
+            elPageNum.textContent= `${elSlideImg.length-last}/${elSlideImg.length}`;
+
             return;
 
         }else if(a==1){ //next
-            last = last -1;
-            if(last < 0){last = elSlideImg.length -1;}
+            
             
             if(slideNum%2 != 0 ){ // 맨앞(html에서 마지막)에 있는 사진 번호가 홀수
                 elSlideImg.forEach(function(v,k){v.className = '';});
@@ -151,8 +212,11 @@ window.addEventListener('DOMContentLoaded',function(){
                 elSlideImg.forEach(function(v,k){v.className = '';});
                 elSlideImg[last].className = 'even_out';
             }
-            // elSlideImg[last].remove();
-            // elSlide.prepend(elSlideImg[last]);
+            elSlide.insertBefore(elSlideImg[last],null);
+            last = last -1;
+            if(last < 0){last = elSlideImg.length -1;}
+            elPageNum.textContent= `${elSlideImg.length-last}/${elSlideImg.length}`;
+
             
             return;
         }

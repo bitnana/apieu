@@ -141,26 +141,8 @@ $(function(){
             triMenu.classList.toggle('none');
         });
 
-
-        
-
-        
-        //1. 헤더 하위메뉴 호출 함수
-        
-
-        //2. language 함수
-        function lang(a,b){
-            elLang.children[0].style.backgroundImage = `url('img/index/arrow_${a}.png')`;
-            elLang.children[1].style.display = b ;
-        }
-
-    }
-
-    function top(){  //top btn
-
         //5. roll top
         const rollTop = document.querySelector('.roll_top');
-
 
         //5. roll top 생성
         window.addEventListener('scroll',function(){
@@ -180,7 +162,28 @@ $(function(){
         rollTop.addEventListener('click',function(e){
             e.preventDefault();
             window.scrollTo({top:0,behavior:'smooth'});
-        });
+        });            
+
+
+        
+
+        
+        //1. 헤더 하위메뉴 호출 함수
+        
+
+        //2. language 함수
+        function lang(a,b){
+            elLang.children[0].style.backgroundImage = `url('img/index/arrow_${a}.png')`;
+            elLang.children[1].style.display = b ;
+        }
+
+
+        
+        
+    }
+
+    function top(){  //top btn
+
         
     }
 

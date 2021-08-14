@@ -9,35 +9,53 @@
     background: url('../img/index/visual_bg.jpg') no-repeat;
     background-size: cover;
     display: flex;
-    overflow: hidden;
-    div{
-        font-size: 0;
-        width: 50%;
-        &.visu_left{
+        > a{
+            display: block;
+            width: 50%; height: 74vh;
+            position: relative;
+            .visu_left{
+                width: 100%; height: 74vh;
+                background: url('../img/index/visual1.jpg') no-repeat;
+                background-size:100%;
+                animation: visual_left .5s linear;
+            }
+        }
         
-            img{
-                width: 100%; 
-                animation: goup .5s forwards;
-            }
-        }
-        &.visu_rt{
-            @include flex(center,flex-end,row);
-            div{
-                width: 65%;
+        .visu_rt{
+            font-size: 0;
+            width: 50%;
+            // @include flex(center,center,row);
+            > div{
+                width: 65%; height:57vh;
+                margin: 17vh auto 0;
                 position: relative;
-                img.visu{ 
-                    width: 100%;
-                    animation: goup .5s forwards;
-                }
+                background: url('../img/index/visual2.jpg') no-repeat;
+                background-size:100%;
+                animation: visual_right .5s linear;
                 .like{
-                    @include bestaward(top,left,-50%,-50%);
-                    img:nth-of-type(1){
-                        animation: circle 6s 1s forwards linear ;
-                    }
+                    @include absol(top,0,left,0);
+                    width: 100%;
+                    img{
+                        &:nth-of-type(1){
+                            width: 20%;
+                            opacity: 0;
+                            transition: .5s;
+                            @include absol(top,0,left,0);
+                            transform: translate(-50%,-50%);
+                            animation: circle 6s 1s linear infinite;
+                        }
+                        &:nth-of-type(2){
+                            opacity: 0;
+                            z-index: 2;
+                            @include absol(top,0,left,0);
+                            transform: translate(-50%,-50%);
+                            width: 10%;
+                            animation: opa .5s 1.5s forwards linear;
+                        }
+                    }                    
                 }
             }
         }
-    }  
 } //visual end  
 
  
@@ -153,6 +171,7 @@ main{
                     img:#{$type}(1){
                         animation: circle 6s infinite linear;
                     }
+                .award.none{display: none;}
                 }
             }
             
@@ -171,7 +190,7 @@ main{
             .award{
                 @include bestaward(top,right,+50%,-50%);
                 img:#{$type}(1){
-                    animation: circle2 6s forwards linear;
+                    animation: circle2 6s linear infinite;
                 }
             }
             .second {
@@ -203,7 +222,10 @@ main{
             .first{
                 .first_txt{
                     @include flex(flex-end,flex-end,column);
-                    span{background: #dedef2;}
+                    span{
+                        background: #dedef2;
+                        @include show;
+                    }
                 }
             }
         }
@@ -218,6 +240,7 @@ main{
             .first{
                 .first_txt{
                     @include flex(flex-end,flex-end,column);
+                    span{@include show;}
                 }
             }
             .second{
@@ -277,6 +300,7 @@ main{
             img{
                 width: 100%;
                 @include absol(top,0,left,0);
+                transition: .5s;
             }
             img:#{$type}(1){
                 position: relative;
@@ -286,17 +310,14 @@ main{
             img:#{$type}(3){transform: rotate(-4deg);}
             img:#{$type}(4){transform: rotate(3deg);}
             img:#{$type}(5){transform: rotate(2deg);}
-            img:#{$type}(6){transform: translate(0, -2px);}
-            img:#{$type}(7){
-                transition: .5s;
-                transform: rotate(-2deg);
-            }
-            img:#{$type}(8){transition: .5s;}
+            img:#{$type}(6){transform: rotate(-3deg);}
+            img:#{$type}(7){transform: rotate(-2deg);}
+            img:#{$type}(8){}
 
-            img.odd_out {animation: slide_odd .5s ;}
-            img.odd_in {animation: slide_odd .5s reverse;}
-            img.even_out {animation: slide_even .5s;}
-            img.even_in {animation: slide_even .5s reverse;}
+            img.odd_out {animation: slide_odd .5s forwards ;}
+            img.odd_in {animation: slide_odd .5s forwards reverse;}
+            img.even_out {animation: slide_even .5s forwards;}
+            img.even_in {animation: slide_even .5s forwards reverse;}
                 
         }
         a{
