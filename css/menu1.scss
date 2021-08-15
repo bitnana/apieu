@@ -11,7 +11,6 @@ main{
         background: url('../img/menu1/detail_bg.png') 100% no-repeat;
         @include flex(center,center,row);
 
-
         .left_insta{
             width: 58%;
             background: white;
@@ -100,9 +99,9 @@ main{
                 }
                 p{
                     padding-left: 10%;
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     font-weight: 400;
-                    color: #e39f9a;
+                    color: #e39f9a; 
                     &:#{$type}(1){padding-top: 10%;}
                 }
             }
@@ -142,7 +141,7 @@ main{
                     // p:hover ~ ul{display: block;}
                 }//select end
                 p{
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     font-weight: 400;
                     color: #e39f9a;
                     &:#{$type}(2){padding-bottom: 10%;}
@@ -159,11 +158,13 @@ main{
         }
         .con3{
             @include right_layout(90%,10%);
-            @include flex(center,center,row);
+            // @include flex(center,center,row);
             .con3_lft{
+                display: inline-block;
+                width: 45%;
                 p{
                     width: 80%;
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     font-weight: 400;
                     color: #e39f9a;
                     text-align: right;
@@ -175,6 +176,8 @@ main{
                 }
             }
             .con3_rt{
+                display: inline-block;
+                width: 45%;
                 div{
                     width: 60%;
                     padding-bottom: 20%;
@@ -182,7 +185,7 @@ main{
                 }
                 p{
                     width: 80%;
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     font-weight: 400;
                     color: #e39f9a;
                     text-align: right;
@@ -196,7 +199,7 @@ main{
                 width: 100%;
                 p{
                     width: 80%;
-                    font-size: 2.5rem;
+                    font-size: 2rem;
                     font-weight: 400;
                     color: #e39f9a;
                 }
@@ -210,6 +213,14 @@ main{
             @include right_layout(60%,10%);
             img{width: 100%;}
         }
+
+        .img1_box.none{display: none;}
+        .img2_box.none{display: none;}
+        .img3_box.none{display: none;}
+        .img4_box.none{display: none;}
+        .img5_box.none{display: none;}
+        .img6_box.none{display: none;}
+        .img7_box.none{display: none;}
     } //right end
 
 }

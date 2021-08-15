@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="box">
+        <div class="one">1</div>
+        <div class="two">2</div>
+    </div>
+
+
+    <style>
+        div { margin: 0; padding:0; box-sizing: border-box; }
+        .box{
+            display: flex; justify-content: center; align-items: stretch;
+            height: 100vh;
+        }
+        .one { background: red;}
+        .two { background: green;}
+    </style>
+
+    <script>
+        const elOne = document.querySelector('.one');
+        const elTwo = document.querySelector('.two');
+
+        console.log(elOne.offsetHeight);
+        console.log(elTwo.offsetHeight);
+    </script>
+
+
+
+</body>
+</html>

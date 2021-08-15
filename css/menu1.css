@@ -441,6 +441,7 @@ header.active {
 
 header {
   width: 100%;
+  height: 8.5vh;
   position: fixed;
   top: 0;
   z-index: 3;
@@ -505,15 +506,13 @@ header .header_div nav p {
 
 header .header_div nav p a {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 header .header_div nav .submenu-3 {
   position: absolute;
-  bottom: 0;
+  top: 8.5vh;
   left: 0;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
   width: 100%;
   background: #fff;
   padding-left: 36.3%;
@@ -539,7 +538,7 @@ header .header_div nav .submenu-3 li a:hover::after {
   display: block;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 22%;
   -webkit-transform: translate(200%, -50%);
           transform: translate(200%, -50%);
 }
@@ -560,10 +559,8 @@ header .header_div nav p:nth-of-type(3):hover ~ .submenu-3 {
 
 header .header_div nav .submenu-4 {
   position: absolute;
-  bottom: 0;
+  top: 8.5vh;
   left: 0;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -580,6 +577,7 @@ header .header_div nav .submenu-4 {
   width: 100%;
   background: #fff;
   padding-left: 1%;
+  height: 40vh;
   -webkit-transition: 0.5s ease-in;
   transition: 0.5s ease-in;
   overflow: hidden;
@@ -714,7 +712,7 @@ header .header_div nav .submenu-4 li a:hover::after {
   display: block;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 22%;
   -webkit-transform: translate(200%, -50%);
           transform: translate(200%, -50%);
 }
@@ -727,14 +725,14 @@ header .header_div nav .submenu-4.hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 314px;
+  height: 40vh;
 }
 
 header .header_div nav p:nth-of-type(4):hover ~ .submenu-4 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 314px;
+  height: 40vh;
 }
 
 header .header_div nav p:nth-of-type(4)::before {
@@ -744,16 +742,14 @@ header .header_div nav p:nth-of-type(4)::before {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: translateY(50%);
-          transform: translateY(50%);
+  -webkit-transform: translateY(22%);
+          transform: translateY(22%);
 }
 
 header .header_div nav .submenu-5 {
   position: absolute;
-  bottom: 0;
+  top: 8.5vh;
   left: 0;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -953,17 +949,21 @@ header .header_div nav .submenu-5 ul li:nth-of-type(10) a img {
           transform: translate(-110%, 3%);
 }
 
-header .header_div nav .submenu-5 li a:hover::after {
+header .header_div nav .submenu-5 ul:nth-of-type(2) {
+  width: 20%;
+}
+
+header .header_div nav .submenu-5 ul li a:hover::after {
   content: '>';
   display: block;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 22%;
   -webkit-transform: translate(200%, -50%);
           transform: translate(200%, -50%);
 }
 
-header .header_div nav .submenu-5 li:last-child {
+header .header_div nav .submenu-5 ul li:last-child {
   margin-bottom: 5%;
 }
 
@@ -988,16 +988,14 @@ header .header_div nav p:nth-of-type(5)::before {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: translateY(50%);
-          transform: translateY(50%);
+  -webkit-transform: translateY(22%);
+          transform: translateY(22%);
 }
 
 header .header_div nav .submenu-7 {
   position: absolute;
-  bottom: 0;
+  top: 8.5vh;
   left: 0;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
   width: 100%;
   background: #fff;
   -webkit-transition: 0.5s ease-in;
@@ -1023,7 +1021,7 @@ header .header_div nav .submenu-7 li a:hover::after {
   display: block;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 22%;
   -webkit-transform: translate(200%, -50%);
           transform: translate(200%, -50%);
 }
@@ -1080,7 +1078,7 @@ header .header_div .side {
 
 header .header_div .side .select {
   display: inline-block;
-  width: 33%;
+  width: 40%;
   position: relative;
 }
 
@@ -1935,8 +1933,8 @@ main .left .left_insta .btn_go img:nth-of-type(1) {
   position: absolute;
   right: 0;
   bottom: 0;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translate(-22%, -22%);
+          transform: translate(-22%, -22%);
 }
 
 main .left .left_insta .btn_go img:nth-of-type(2) {
@@ -2009,8 +2007,8 @@ main .left .left_youtube .btn_go img:nth-of-type(1) {
   position: absolute;
   right: 0;
   bottom: 0;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translate(-22%, -22%);
+          transform: translate(-22%, -22%);
 }
 
 main .left .left_youtube .btn_go img:nth-of-type(2) {
@@ -2077,7 +2075,7 @@ main .right .con1 .con1_lft div img {
 
 main .right .con1 .con1_lft p {
   padding-left: 10%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #e39f9a;
 }
@@ -2139,7 +2137,7 @@ main .right .con1 .con1_rt .select ul.block {
 }
 
 main .right .con1 .con1_rt p {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #e39f9a;
 }
@@ -2168,24 +2166,16 @@ main .right .con2 img {
 main .right .con3 {
   width: 90%;
   margin: 10% auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+}
+
+main .right .con3 .con3_lft {
+  display: inline-block;
+  width: 45%;
 }
 
 main .right .con3 .con3_lft p {
   width: 80%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #e39f9a;
   text-align: right;
@@ -2203,6 +2193,11 @@ main .right .con3 .con3_lft div img {
   width: 100%;
 }
 
+main .right .con3 .con3_rt {
+  display: inline-block;
+  width: 45%;
+}
+
 main .right .con3 .con3_rt div {
   width: 60%;
   padding-bottom: 20%;
@@ -2214,7 +2209,7 @@ main .right .con3 .con3_rt div img {
 
 main .right .con3 .con3_rt p {
   width: 80%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #e39f9a;
   text-align: right;
@@ -2244,7 +2239,7 @@ main .right .con4 .con4_left {
 
 main .right .con4 .con4_left p {
   width: 80%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   color: #e39f9a;
 }
@@ -2264,5 +2259,33 @@ main .right .con5 {
 
 main .right .con5 img {
   width: 100%;
+}
+
+main .right .img1_box.none {
+  display: none;
+}
+
+main .right .img2_box.none {
+  display: none;
+}
+
+main .right .img3_box.none {
+  display: none;
+}
+
+main .right .img4_box.none {
+  display: none;
+}
+
+main .right .img5_box.none {
+  display: none;
+}
+
+main .right .img6_box.none {
+  display: none;
+}
+
+main .right .img7_box.none {
+  display: none;
 }
 /*# sourceMappingURL=menu1.css.map */

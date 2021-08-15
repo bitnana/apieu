@@ -36,14 +36,14 @@ $subcolor : rgb(225, 120, 119);
 @mixin submenu_after($a,$b){
     content: '>';
     display: block;
-    @include absol(right,0,top,50%);
+    @include absol(right,0,top,22%);
     transform: translate($a,$b);    
 }
 
 @mixin menu_sticker {
     text-align: center;
     @include absol(top,0,left,0);
-    transform: translateY(50%);   
+    transform: translateY(22%);   
 }
 
 
@@ -104,7 +104,7 @@ $subcolor : rgb(225, 120, 119);
             opacity: 0;
             transition: .5s;
             @include absol(#{$a},0,#{$b},0);
-            transform: translate(-50%,-50%);
+            transform: translate(-22%,-22%);
         }
         &:nth-of-type(2){
             opacity: 0;
@@ -154,8 +154,8 @@ $subcolor : rgb(225, 120, 119);
         }
         img:#{$type}(2){
             width: 80%;
-            @include absol(top,0,left,50%);
-            transform: translateX(-50%);
+            @include absol(top,0,left,22%);
+            transform: translateX(-22%);
         }
         h6{
             font-size: 2rem;

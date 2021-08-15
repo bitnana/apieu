@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded',function(){
     $('.like img').offsetTop;
     console.log($('.like img').eq(1).offset().top);
 
-    //2.show up   (이)
+    //2.show up 
     const header = document.querySelector('header');
     let showImg = document.querySelectorAll('.show');
     const elLikeAward = document.querySelectorAll('.award, .like');
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded',function(){
     let start,end;
     
     //3. Youtube
-    const elYoutube = document.querySelector('.adver iframe');
+    const elYoutube = document.querySelector('#player');
     const elYtimg = document.querySelector('.adver img');
 
     //4. slide
@@ -113,43 +113,29 @@ window.addEventListener('DOMContentLoaded',function(){
     elYtimg.addEventListener('click',function(e){
         e.preventDefault();
         elYtimg.style = 'z-index:-1';
-        elYoutube.src = "https://www.youtube.com/embed/0FbFBs8hS30?autoplay=1&controls=1&autohide=0&rel=0&wmode=transparent&showinfo=0&playsinline=1&allowScriptAccess=always&enablejsapi=1&origin=https%3A%2F%2Fwww.apieu.com&widgetid=1";
-        onYouTubePlayerAPIReady();
-        console.log(player);
+        elYoutube.src = "https://www.youtube.com/embed/0FbFBs8hS30?autoplay=1&amp;controls=1&amp;rel=0&amp;showinfo=0&amp;enablejsapi=1&amp;version=3&amp;playerapiid=ytplayer";
     });
 
-    // This code loads the IFrame Player API code asynchronously.
-    let tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    let firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);    
+    //3. Youtube api 
+    // var tag = document.createElement('script');
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // var firstScriptTag = document.getElementsByTagName('script')[0];
+    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     var player;
-
-    function onYouTubePlayerAPIReady() {
-
-        try {
-            player = new YT.Player('player', {
-                videoId : '0FbFBs8hS30',
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        } catch (e) {}
-
+    function onYouTubeIframeAPIReady(){
+        player = new YT.player('player', {
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
     }
 
-    function onPlayerReady(event) {
-    	//유튜브 플레이어가 다 만들어지면 호출됨
+    //안되는구나 ㅜㅠㅜㅜ
+    function onPlayerStateChange(){
+        if(player.getPlayerState()==0) console.log('finish');
     }
-
-    function onPlayerStateChange(event) {
-        if (event.data === 0) {
-        	console.log('finish');
-        }
-    }
-
 
 
 
@@ -162,17 +148,15 @@ window.addEventListener('DOMContentLoaded',function(){
 
     //4. slide
 
-    let last = elSlideImg.length-1;
-    let slideNum;
+    let numFront = elSlideImg.length-1 ;
+    let numBack = 0;
+    let slideNum; //odd inout even inout 클래스 주기위한 dataset.slide 값
+    let whatNum;
     
     for(let i=0; i <elPreNext.length; i++){
         elPreNext[i].addEventListener('click',function(e){
             e.preventDefault();
-
-            slideNum = elSlideImg[last].dataset.slide;
             slideInOut(i);
-            
-            
                         
         }); //click end
     } //prenext for end               
@@ -183,45 +167,63 @@ window.addEventListener('DOMContentLoaded',function(){
     function slideInOut(a){
 
         if(a == 0){ //pre
-            elSlideImg[last].remove();
-            elSlide.prepend(elSlideImg[last]);
+
+            slideNum = elSlideImg[numBack].dataset.slide;
+            
             if(slideNum%2 != 0 ){ // 맨뒤(html에서 첫번째)에 있는 사진 숫자가 홀수
                 elSlideImg.forEach(function(v,k){v.className = '';});
-                elSlideImg[last].className = 'odd_in';
+                elSlideImg[numBack].className = 'odd_in';
+                preChange();
             }else{
                 elSlideImg.forEach(function(v,k){v.className = '';});
-                elSlideImg[last].className = 'even_in';
+                elSlideImg[numBack].className = 'even_in';
+                preChange();
             }
             
-            // elSlideImg[last].remove();
-            // elSlide.prepend(elSlideImg[last]);
-            // elSlide.insertBefore(elSlideImg[last],elSlideImg[1]);
-            last = last +1;
-            if(last > elSlideImg.length -1){last = 0;}
-            elPageNum.textContent= `${elSlideImg.length-last}/${elSlideImg.length}`;
-
-            return;
+            // return;
 
         }else if(a==1){ //next
             
-            
+            slideNum = elSlideImg[numFront].dataset.slide;
             if(slideNum%2 != 0 ){ // 맨앞(html에서 마지막)에 있는 사진 번호가 홀수
                 elSlideImg.forEach(function(v,k){v.className = '';});
-                elSlideImg[last].className = 'odd_out';
+                elSlideImg[numFront].className = 'odd_out';
+                setTimeout(function(){
+                    elSlideImg[numFront].classList.remove('odd_out');
+                    nextChange();                   
+                },500);
+                
             }else{
                 elSlideImg.forEach(function(v,k){v.className = '';});
-                elSlideImg[last].className = 'even_out';
+                elSlideImg[numFront].className = 'even_out';
+                setTimeout(function(){
+                    elSlideImg[numFront].classList.remove('even_out');
+                    nextChange();                   
+                },500);
+                
             }
-            elSlide.insertBefore(elSlideImg[last],null);
-            last = last -1;
-            if(last < 0){last = elSlideImg.length -1;}
-            elPageNum.textContent= `${elSlideImg.length-last}/${elSlideImg.length}`;
 
-            
-            return;
+
+            // return;
         }
     } 
 
+    function preChange(){  //list 바꾸고 맨앞 맨뒤이미지 번호 바꾸기
+        elSlide.append(elSlideImg[numBack]);
+        numFront = numBack;
+        numBack = numBack +1;
+        if(numBack > elSlideImg.length -1){numBack = 0;numFront = elSlideImg.length -1; }
+        elPageNum.textContent= `${elSlideImg.length-numFront}/${elSlideImg.length}`;
+
+    }
+
+    function nextChange(){
+        elSlide.insertBefore(elSlideImg[numFront],elSlide.firstChild);
+        numBack = numFront;
+        numFront = numFront-1;
+        if(numFront < 0){numFront = elSlideImg.length -1; numBack=0;}
+        elPageNum.textContent= `${elSlideImg.length-numFront}/${elSlideImg.length}`; 
+    }
 
 
 
