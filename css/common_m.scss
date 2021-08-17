@@ -1,0 +1,282 @@
+@charset "utf-8";
+@import '_mixin.scss';
+// @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
+
+
+@include mobile{
+    //header
+    body.active{
+        overflow:hidden;
+    }
+    body.active::after{
+        content:'';
+        width:100%; height:100%;
+        background:rgba(0,0,0,0.6);
+        position:fixed; left:0; top:0;
+        z-index:1;
+    }
+    header.active{
+        background:#fff;
+    }    
+
+    header{
+        width: 100%; height: 8.5vh;
+        position: fixed; top: 0;
+        z-index: 3;
+        transition: 1s;
+         
+        .header_div{
+            padding: 2% 5%; 
+            transition: 1s;
+            position: relative;
+            @include flex(space-between,center,row);
+            h2{ 
+                position: relative;
+                display: inline-block;
+                z-index: 3;
+                width: 14%;
+                font-size: 0rem; 
+                img{ width: 100%}
+            }
+            nav{display: none;} //nav end
+            
+            .side{
+               @include flex(space-evenly,center,row);
+                z-index: 3;
+                width: 19%;
+                flex-shrink: 0;
+                .select{
+                    display: block; 
+                    @include flex(flex-start,flex-start,row);
+                    width: 30%;  
+                    position: static;
+                    p{display: none;}
+                    ul{
+                        @include flex(flex-start,flex-start,row);
+                        position: static;
+                        width: 100%;
+                        transform: translateY(0);
+                        
+                        li{ 
+                            display: block;
+                            padding: 15% 5%;
+                            background: transparent;
+                            a{
+                                display: block;
+                                width: 100%;
+                                color: #61544f;
+                                font-size: 1rem;
+                            }
+                        }
+                    }//ul end
+                }//select end
+                .search{
+                    display: inline-block;
+                    position: relative;
+                    a{
+                        img{
+                            opacity:1;
+                            transition: .5s;
+                        }
+                        img:nth-of-type(2){
+                            @include absol(top,0,left,0);
+                        }
+                        
+                        img.disapr{
+                            opacity: 0;
+                            transition: .5s
+                        }
+                    }
+                    
+                }
+                .trigger {
+                    display: inline-block;
+                    a{
+                        display: block; 
+                        width: 24px;
+                        height: 22px;
+                        @include flex(space-between,center,column);
+                        span{
+                            display: block;
+                            width: 100%;
+                            background: $maincolor;
+                            height: 2px;
+                            transition: .5s;
+                        }
+                        span:nth-of-type(1).active {
+                            transform: translateY(10px) rotate(-45deg);
+                        }
+                          
+                        span:nth-of-type(2).active {
+                            opacity: 0;
+                        }
+                          
+                        span:nth-of-type(3).active {
+                            transform: translateY(-10px) rotate(45deg);
+                        }
+                    }
+                    
+                }
+            }
+        }  //header_div
+        
+        .con_srch{   //메뉴 검색
+            @include submenu_bg;
+            @include flex(space-evenly, center,column);
+            padding: 2% 0;
+            div{
+                width: 60%;
+                padding: 2% 0;
+                &.box_srch{
+                    width: 91%;
+                    background: $maincolor;
+                    border-radius: 30px;
+                    text-align: center;
+                    position: relative;
+                    padding: 0.5% 0;
+                    input{
+                        width: 83%; padding: 0.5% 0%;
+                        border: none;
+                        background: none;
+                        color: #fff;
+                        font-size: 1.5rem;;
+                    }
+                    input:focus{outline: none;}
+                    button{
+                        background: none;
+                        @include absol(top,50%,right,0);
+                        transform: translate(-100%,-50%);
+                    }
+                }
+    
+                &.recent_srch{display: none;}
+                &.best_srch{
+                    width: 89%;
+                    @include flex(space-between, flex-start, row);
+                    p {font-size:1.2rem;}
+                    ul{
+                        width: 85%;
+                        @include flex(flex-start,center,row);
+                        flex-wrap: wrap;
+                        flex-shrink: 0;
+                        li{
+                           font-weight: 300;
+                           width: 30%;
+                           margin: 1% 0;
+                            span{
+                                display: inline-block;
+                                margin: 0;
+                                font-weight: 300;
+                                width: 30px; height: 30px;
+                                background: #e4afab;
+                                border-radius: 30px;
+                                text-align: center;
+                            }
+                            a{
+                                display: inline-block;
+                                padding-left: 3%; 
+                            }
+                        }  
+                    }
+                }
+            } //div end
+        }// con_srch end
+        .con_srch.none{display: none}
+        .tri_menu{ //trigger
+            @include submenu_bg;
+            display: block;
+            flex-shrink: 0;
+            z-index : 2;
+            position: static;
+            width: 100%;
+            height: 100%;
+            padding: 5% 5%;
+            p{
+                font-size: 1.5rem;
+                padding: 4% 0 ;
+                position: relative;
+                border-bottom: 1px solid #efeded;
+            }
+            p:#{$type}(2){margin:0;}
+            p:#{$type}(6)::before{}
+            ul{
+                display: none;
+                margin: 0;
+                li{padding: 1% 0;}
+            }
+            ul.none{display: none;}
+            @for $j from 2 to 4{
+                div:nth-of-type(#{$j}){
+                    width: 100%;
+                    position: relative;
+                    ul{
+                        display: inline-block;
+                        width: 48%;
+                        padding:3% 0;
+                        li{padding: 0 0 0 3%;}
+                                       
+                        li:#{$type}(1){
+                            padding-left: 0;
+                            color: $subcolor;
+                        }
+            
+                       @for $i from 2 to 11 {
+                            li:nth-of-type(#{$i}){
+                                padding: 6% 6% 2% 14%;
+                                position: relative;
+                                img{  
+                                    width: 12%;
+                                    @include absol(bottom,0,left,0);
+                                    transform: translateY(-25%);
+                                } 
+                            }
+                        }
+                    }    
+                    
+                }//div nth of type end
+            }//for end
+           > div:#{$type}(2){
+                p::before{
+                    display: none;
+                    content: url('../img/index/menu_stick1.png');
+                    @include absol(top,0,left,0);
+                    transform: translateY(-11%);   
+                }
+            }
+            > div:#{$type}(3){
+                p::before{
+                    display: none;
+                    content: url('../img/index/menu_stick2.png');
+                    @include absol(top,0,left,0);
+                    transform: translateY(-11%);   
+                }
+            }
+            
+        }//tri_menu end
+        .tri_menu.none{display: none;}
+    
+    } //header end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}//mobile end
