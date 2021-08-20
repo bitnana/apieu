@@ -1,4 +1,39 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 700;
+  src: local("Spoqa Han Sans Neo Bold"), url("../fonts/SpoqaHanSansNeo-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 400;
+  src: local("Spoqa Han Sans Neo Regular"), url("../fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype");
+}
+
+h1, h2, h3, h4, h5, h6, ul, li, div, html, header, body, main, p, section, figure, figcaption, footer, article, iframe, input, textarea, button, nav, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+*, a, ::after, ::before {
+  color: #61544f;
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 700;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 @-webkit-keyframes circle {
   0% {
     opacity: 1;
@@ -11,6 +46,7 @@
             transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
 @keyframes circle {
   0% {
     opacity: 1;
@@ -133,7 +169,7 @@
     height: 0vh;
   }
   100% {
-    height: 74vh;
+    height: 41vw;
   }
 }
 
@@ -142,7 +178,7 @@
     height: 0vh;
   }
   100% {
-    height: 74vh;
+    height: 41vw;
   }
 }
 
@@ -151,7 +187,7 @@
     height: 0vh;
   }
   100% {
-    height: 57vh;
+    height: 35vw;
   }
 }
 
@@ -160,7 +196,7 @@
     height: 0vh;
   }
   100% {
-    height: 57vh;
+    height: 35vw;
   }
 }
 
@@ -256,41 +292,6 @@
   }
 }
 
-@font-face {
-  font-family: 'Spoqa Han Sans Neo';
-  font-weight: 700;
-  src: local("Spoqa Han Sans Neo Bold"), url("../fonts/SpoqaHanSansNeo-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: 'Spoqa Han Sans Neo';
-  font-weight: 400;
-  src: local("Spoqa Han Sans Neo Regular"), url("../fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype");
-}
-
-h1, h2, h3, h4, h5, h6, ul, li, div, html, header, body, main, p, section, figure, figcaption, footer, article, iframe, input, textarea, button, nav, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-*, a, ::after, ::before {
-  color: #61544f;
-  font-family: 'Spoqa Han Sans Neo';
-  font-weight: 700;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 body.active {
   overflow: hidden;
 }
@@ -321,6 +322,7 @@ header {
 }
 
 header .header_div {
+  height: 8.5vh;
   padding: 0% 5%;
   -webkit-transition: 1s;
   transition: 1s;
@@ -963,7 +965,7 @@ header .header_div .side .select p a {
 }
 
 header .header_div .side .select ul {
-  display: none;
+  display: block;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -981,6 +983,10 @@ header .header_div .side .select ul li a {
   display: block;
   width: 100%;
   color: white;
+}
+
+header .header_div .side .select ul.none {
+  display: none;
 }
 
 header .header_div .side .search {

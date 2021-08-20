@@ -9,8 +9,8 @@ $(function(){
         //1. 헤더 하위메뉴 호출
         const elHeader = document.querySelector('header');
         const mainMenu = document.querySelectorAll('nav p');
-        let subMenu, conSub;
-        conSub = document.querySelectorAll('.sub');
+        let subMenu;
+        let conSub = document.querySelectorAll('.sub');
         
         //2. language
         const elLang = document.querySelector('.select');
@@ -30,11 +30,19 @@ $(function(){
         const elTri = document.querySelector('.trigger');
         const triSpan = document.querySelectorAll('.trigger span');
         const triMenu = document.querySelector('.tri_menu');
+            //m1023
+        const elTriMenu = document.querySelectorAll('.tri_menu p');
+        const elLogo = document.querySelector('h2 img');
+        const srchIcon = document.querySelector('.search img:nth-of-type(1)');
+        const triSubMenu = document.querySelectorAll('.tri_menu ul');
 
-        
-        
+        //5. roll top
+        const rollTop = document.querySelector('.roll_top');
+        var beforePosition = document.documentElement.scrollTop;
 
-        
+        //반응형
+        let m1023 = window.matchMedia("screen and (max-width: 1023px)");
+
         
         // 1. 헤더 하위메뉴 호출
 
@@ -45,6 +53,7 @@ $(function(){
         }
         elHeader.addEventListener('mouseleave',function(){
             headerBg(500);
+            if(m1023.matches){elHeader.classList.remove('active');}
         });
 
         conSub.forEach((sub)=>{
@@ -59,39 +68,26 @@ $(function(){
         });
 
 
-        function headerBg(a){
-            setTimeout(function(){
-                elHeader.classList.remove('active');
-            },a);
-        }
+
 
         //2. langeuage
         elLang.addEventListener('click',function(e){
             e.preventDefault();
-            if(elLang.children[1].style.display=='none') lang(`up`,'block');
-            else lang('down','none');
+            if(elLang.children[1].classList.contains('none')){
+                lang(`up`);
+            }else{
+                lang('down');
+            }
         }); //새로고침하고 하면 처음한번은 클릭이 안되는데 왜그런걸까요????????????????????
 
         //3. search 토글버튼
         elSearch.addEventListener('click',function(e){
             e.preventDefault();
-            srchToggle();
-            searchHeader();
+            srchToggle();   // 써치이미지 바꾸기, 바디active consrch.none
+            searchHeader();  //헤더 배경바꾸기
         });
 
-        function searchHeader(){
-            if( srchImg[0].classList.contains('disapr') ){
-                elHeader.style.background = '#fff';
-            }else{
-                elHeader.style.background = 'none';
-            }
-        }
-        function srchToggle(){
-            srchImg[0].classList.toggle('disapr');
-            srchImg[1].classList.toggle('disapr');
-            body.classList.toggle('active');
-            conSrch.classList.toggle('none');
-        }
+
 
         //3. search 최근검색어 리스트 삭제  
         for(let i=0; i<recentLi.length; i++){
@@ -133,31 +129,66 @@ $(function(){
 
         window.onload = init;
 
+
         //4.버거메뉴 
-        elTri.addEventListener('click',function(){
+        elTri.addEventListener('click',function(e){
+            e.preventDefault();
             for(let i=0; i<triSpan.length; i++){
                 triSpan[i].classList.toggle('active');
+                if(m1023.matches){mTriggerHeader(i);}
+                                    //모바일 트리거 헤더 변화
             }
             triMenu.classList.toggle('none');
+            body.classList.toggle('active');
+            
         });
 
-        //5. roll top
-        const rollTop = document.querySelector('.roll_top');
 
-        //5. roll top 생성
+        for(let i=0; i<elTriMenu.length; i++){
+            triSubMenu[i].parentElement.addEventListener('click', function(){
+                triSubMenu[i].classList.toggle('active');
+                if(triSubMenu[i].classList.contains('active') ){
+                    this.children[0].classList.add('on');
+                }else{
+                    this.children[0].classList.remove('on');
+                }
+            });
+        }
+
+
+
+
+
+
+        //5. roll top 생성 (scroll up & down)
         window.addEventListener('scroll',function(){
 
-            // console.log(window.scrollY);
+            var afterPosition = document.documentElement.scrollTop;
+
+
+            // console.log(beforePosition, afterPosition);
             if(window.scrollY > 0){
                 elHeader.style.background = '#fff';
                 rollTop.classList.remove('none');
+                if(m1023.matches){
+                    if(afterPosition < beforePosition ){  //scroll up
+                        elHeader.style.display = 'none';
+                    }else{
+                        elHeader.style.display = 'block';
+                    }
+                }
             }else{
                 elHeader.style.background = 'transparent';
                 rollTop.classList.add('none');
-            }
+                if(m1023.matches){
+                    elHeader.style.display = 'block';
+                }
 
+            }
+            beforePosition= afterPosition;
 
         });
+
         //5. roll top 기능
         rollTop.addEventListener('click',function(e){
             e.preventDefault();
@@ -169,14 +200,48 @@ $(function(){
 
         
         //1. 헤더 하위메뉴 호출 함수
-        
+        function headerBg(a){  //header active(bg white);
+            setTimeout(function(){elHeader.classList.remove('active');},a);
+        }        
 
         //2. language 함수
-        function lang(a,b){
+        function lang(a){
             elLang.children[0].style.backgroundImage = `url('img/index/arrow_${a}.png')`;
-            elLang.children[1].style.display = b ;
+            elLang.children[1].classList.toggle('none') ;
         }
 
+        //3. search  토글 버튼
+        function searchHeader(){
+            if( srchImg[0].classList.contains('disapr') ){
+                elHeader.style.background = '#fff';
+            }else{
+                elHeader.style.background = 'none';
+            }
+        }
+        function srchToggle(){
+            srchImg[0].classList.toggle('disapr');
+            srchImg[1].classList.toggle('disapr');
+            body.classList.toggle('active');
+            conSrch.classList.toggle('none');
+        }
+
+        //4.버거메뉴
+        function mTriggerHeader(a){
+            if( triSpan[0].classList.contains('active') ){
+                triSpan[a].style.background = '#ecbab6';
+                elLogo.src = './img/index/logo_pink.png'
+                srchIcon.src = './img/index/ico_search_pink.png'
+                elLang.children[1].style.display  =  'flex'
+                elHeader.style.background = '#6d635f';
+                
+            }else{
+                triSpan[a].style.background = '#61544f';
+                elLogo.src = 'img/index/logo.png'
+                srchIcon.src = './img/index/ico_search.png'
+                elLang.children[1].style.display  =  'none'
+                elHeader.style.background = 'transparent';
+            }
+        }
 
         
         

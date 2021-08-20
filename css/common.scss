@@ -1,34 +1,6 @@
 @charset "utf-8";
 @import '_mixin.scss';
 // @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css');
-@font-face {
-    font-family: 'Spoqa Han Sans Neo';
-    font-weight: 700;
-    src: local('Spoqa Han Sans Neo Bold'),
-    url('../fonts/SpoqaHanSansNeo-Bold.ttf') format('truetype');
-}
-//   폰트url쓰는방법 알기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-@font-face {
-    font-family: 'Spoqa Han Sans Neo';
-    font-weight: 400;
-    src: local('Spoqa Han Sans Neo Regular'),
-    url('../fonts/SpoqaHanSansNeo-Regular.ttf') format('truetype');
-}
-
-h1, h2, h3, h4, h5, h6, ul, li, div, html, header, body, main,p, section, figure, figcaption, footer, article, iframe, input, textarea, button, nav, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-li {list-style: none;}
-a {text-decoration: none; color: black;}
-*,a,::after,::before {
-    color: #61544f; 
-    // font-family:'SpoqaHanSans-Bold'; 
-    font-family: 'Spoqa Han Sans Neo';
-    font-weight:700;
-    box-sizing: border-box;}
-
 
 //header
 body.active{
@@ -51,6 +23,7 @@ header{
     transition: 1s;
     
     .header_div{
+        height: 8.5vh;
         padding: 0% 5%; 
         transition: 1s;
         position: relative;
@@ -188,11 +161,10 @@ header{
                     }
                 }
                 ul{
-                    display: none;
+                    display: block;
                     @include absol(bottom,0,right,0);
                     transform: translateY(100%);
                     width: 100%;
-                    
                     li{
                         padding: 15% 5%;
                         background: $maincolor;
@@ -203,7 +175,9 @@ header{
                         }
                     }
                 }//ul end
+                ul.none{display: none;}
             }//select end
+            
             .search{
                 display: inline-block;
                 position: relative;
@@ -504,3 +478,5 @@ footer{
     }
     
 }
+
+
