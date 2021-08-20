@@ -1,46 +1,66 @@
-window.addEventListener('DOMContentLoaded',function(){
+window.addEventListener('load',function(){
 
     //1. 오른쪽만 스크롤
     const elLeft = document.querySelector('.left');
     const elRight = document.querySelector('.right');
     const elMain = document.querySelector('main');
+    const elImg = document.querySelectorAll('img');
+    const elFooter = document.querySelector('footer');
     // let rightHei = elRight.scrollHeight; ??????문서높이가 안잡혀서 우선 2700으로
     var body = document.body,
         html = document.documentElement;
 
-    var height = Math.max( body.scrollHeight, body.offsetHeight, 
+    let height, elRightHeight;
+
+    //2. all insta youtube 정렬
+    const elSort = document.querySelectorAll('.select img'); //insta youtube all 
+    const elList = document.querySelector('.con1_rt .select ul');  //하위메뉴
+    const elSelector = document.querySelector('.con1_rt .select p');  //하위메뉴나오게하는버튼
+    const elLeftBox =  document.querySelectorAll('.left > div'); //왼쪽 콘텐츠
+    let sortNum, classImg, classBox,alt,num, imgClass,boxClass;
+    localStorage.sort = 'all';
+
+    //반응형
+    let m1023 = window.matchMedia("screen and (max-width: 1023px)");
+
+
+    //1. 오른쪽만 스크롤
+    elImg.forEach(function(im,k){
+        im.onload = function(){
+            // console.log(k)
+            // console.log(elRight.offsetHeight, 'right offsetheight');  //????????얘도 이상함
+            // console.log(window.innerHeight, 'window innerheight');  //이것도 갑이 이상항
+            elRightHeight = elRight.offsetHeight;
+            height = Math.max( body.scrollHeight, body.offsetHeight, 
                 html.clientHeight, html.scrollHeight, html.offsetHeight );
+        }        
+    });
+    window.addEventListener('scroll', function(){
+        console.log(this.scrollY);
+        //스크롤 내려갈때
+        //현재창의 높이+스크롤이 움직인만큼 <= 오른쪽div Height
+        if(this.innerHeight + this.scrollY <= elRightHeight){
+            elLeft.style = `position:fixed; top:0; left:0`;
+            
+        }else{
+            elLeft.style = `display:flex;`
+            elMain.style = `align-items:flex-end;`
+        }
 
-        console.log(elRight.offsetHeight, 'right offsetheight');  //????????얘도 이상함
-        console.log(window.innerHeight, 'window innerheight');  //이것도 갑이 이상항
-        window.addEventListener('scroll', function(){
-                console.log(this.scrollY);
-                //스크롤 내려갈때
-                //현재창의 높이+스크롤이 움직인만큼 <= 오른쪽div Height
-                if(this.innerHeight + this.scrollY <= elRight.offsetHeight){
-                    elLeft.style = `position:fixed; top:0; left:0`;
-                }else{
-                    elLeft.style = `display:static;`
-                    elMain.style = `align-items:flex-end;`
-                }
+        // 스크롤 올라갈때
+        if( this.scrollY <= height-elFooter.offsetHeight-elLeft.offsetHeight ){
+            elLeft.style = `position:fixed; top:0; left:0`;
+        }
 
-                //스크롤 올라갈때
-                // if( this.scrollY <= 전체document높이-footer높이-elLeft높이 ){
-                //     elLeft.style = `position:fixed; top:0; left:0`;
-                // }
+        if(m1023.matches){elLeft.style.position = 'relative';}
+
+        
 
     }); // scroll end
 
 
-    //2. all insta youtube 정렬
-    const elSort = document.querySelectorAll('.select img'); //insta youtube all 
-    const elList = document.querySelector('.select ul');  //하위메뉴
-    const elSelector = document.querySelector('.select p');  //하위메뉴나오게하는버튼
-    const elLeftBox =  document.querySelectorAll('.left > div'); //왼쪽 콘텐츠
-    let sortNum, classImg, classBox,alt,num, imgClass,boxClass;
-    localStorage.sort = 'all';
     
-
+    //2. all insta  youtube 정렬
     function vod(){
 
         fetch('js/insta_youtube.json')
@@ -122,7 +142,7 @@ window.addEventListener('DOMContentLoaded',function(){
             snsChange(i);
         }); //click end
     }
-
+    //2. all insta youtube 정렬 함수
     function snsChange(a){
         if(elList.classList.contains('block')){
 
