@@ -174,7 +174,7 @@ main{
             opacity: 0;
             @include show;
 
-            margin: 10% 0 15% 37%;
+            margin: 10% 2% 15% 35%;
             @include flex(flex-end,flex-end,column);
             & >img{width: 90%;}
             & >p{
@@ -243,8 +243,8 @@ main{
                 img{display: none;}
                 h6{
                         width: 88%;
-                        @include absol(bottom,30%,right,107%);
-                        text-align: right;
+                        @include absol(bottom,30%,left,107%);
+                        text-align: left;
                         font-size: 2.5rem;
                 }
                 p{

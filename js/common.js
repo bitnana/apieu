@@ -35,6 +35,8 @@ $(function(){
         const elLogo = document.querySelector('h2 img');
         const srchIcon = document.querySelector('.search img:nth-of-type(1)');
         const triSubMenu = document.querySelectorAll('.tri_menu ul');
+        const mSubOpen = document.querySelectorAll('.m_sub');
+        
 
         //5. roll top
         const rollTop = document.querySelector('.roll_top');
@@ -143,21 +145,16 @@ $(function(){
             
         });
 
-
-        for(let i=0; i<elTriMenu.length; i++){
-            triSubMenu[i].parentElement.addEventListener('click', function(){
-                triSubMenu[i].classList.toggle('active');
-                if(triSubMenu[i].classList.contains('active') ){
-                    this.children[0].classList.add('on');
-                }else{
-                    this.children[0].classList.remove('on');
+        for(let i=0; i<mSubOpen.length; i++){
+            mSubOpen[i].addEventListener('click', function(){
+                mSubOpen[i].children[0].classList.toggle('on');
+                for(let j=0; j<triSubMenu.length; j++){
+                    if(mSubOpen[i] == triSubMenu[j].parentElement){
+                        triSubMenu[j].classList.toggle('active');
+                    }
                 }
             });
         }
-
-
-
-
 
 
         //5. roll top 생성 (scroll up & down)

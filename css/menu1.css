@@ -487,7 +487,7 @@ header {
 
 header .header_div {
   height: 8.5vh;
-  padding: 0% 5%;
+  padding: 0% 4%;
   -webkit-transition: 1s;
   transition: 1s;
   position: relative;
@@ -522,9 +522,9 @@ header .header_div nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -532,18 +532,20 @@ header .header_div nav {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  width: 60%;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 74%;
 }
 
 header .header_div nav p {
   position: relative;
   display: inline-block;
-  padding: 3% 1%;
+  padding: 0 1% 3%;
+  margin: 3% 1% 0;
 }
 
 header .header_div nav p a {
   width: 100%;
-  font-size: 1rem;
 }
 
 header .header_div nav .submenu-3 {
@@ -779,8 +781,8 @@ header .header_div nav p:nth-of-type(4)::before {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: translateY(22%);
-          transform: translateY(22%);
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
 }
 
 header .header_div nav .submenu-5 {
@@ -1025,8 +1027,8 @@ header .header_div nav p:nth-of-type(5)::before {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: translateY(22%);
-          transform: translateY(22%);
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
 }
 
 header .header_div nav .submenu-7 {
@@ -1097,9 +1099,9 @@ header .header_div .side {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1114,12 +1116,15 @@ header .header_div .side {
 }
 
 header .header_div .side .select {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   display: inline-block;
-  width: 40%;
+  width: 44px;
   position: relative;
 }
 
 header .header_div .side .select p {
+  width: 100%;
   background: url("../img/index/arrow_down.png") 100% 0 no-repeat;
 }
 
@@ -1154,11 +1159,15 @@ header .header_div .side .select ul.none {
 }
 
 header .header_div .side .search {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 21px;
   display: inline-block;
   position: relative;
 }
 
 header .header_div .side .search a img {
+  width: 100%;
   opacity: 1;
   -webkit-transition: .5s;
   transition: .5s;
@@ -1177,6 +1186,9 @@ header .header_div .side .search a img.disapr {
 }
 
 header .header_div .side .trigger {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 25%;
   display: inline-block;
 }
 
