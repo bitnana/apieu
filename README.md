@@ -14,7 +14,18 @@ A. I want to try a lot of events I haven't tried yet. Especially, i'm interested
    
 Q. Tell features of your clone site.
 
-A. On main page, you can find that most tags has scroll event. So, I make code first. And put 
+A. On main page, you can find that most tags has scroll event. So, I make code first. And it is applied to them by SCSS.
+   It was my first time to use SCSS. I think it is very useful to apply same css to many tags at once.
+   
+   This time, I use Youtube API. I learn how to use it by myself. Watching youtube and searching on google.
+   Through this experience, I got confidence in using codes that I don't make. 
+   I was little bit afraid of that. Because Using code I made is much easier than that of other made. 
+   There are a lot of APIs I have to use like map, graph and so on. 
+   This clone site makes me more confident.
+   
+   
+   
+   
    
 
 I copy this website to develop my skill.
