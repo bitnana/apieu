@@ -1546,8 +1546,8 @@ a {
     position: absolute;
     top: 0;
     left: 22%;
-    -webkit-transform: translateX(-22%);
-            transform: translateX(-22%);
+    -webkit-transform: translateX(-14%);
+            transform: translateX(-14%);
   }
   main .con_left .ad-1 .second h6 {
     font-size: 2rem;
@@ -1982,7 +1982,7 @@ a {
   main .con_right .ad-4 .second p {
     width: 88%;
     position: absolute;
-    bottom: 40%;
+    bottom: 20%;
     left: 107%;
     text-align: left;
     font-weight: 400;
@@ -2061,8 +2061,8 @@ a {
     position: absolute;
     top: 0;
     left: 22%;
-    -webkit-transform: translateX(-22%);
-            transform: translateX(-22%);
+    -webkit-transform: translateX(-14%);
+            transform: translateX(-14%);
   }
   main .con_right .ad-5 .second h6 {
     font-size: 2rem;
@@ -2336,8 +2336,8 @@ a {
     position: absolute;
     top: 0;
     left: 22%;
-    -webkit-transform: translateX(-22%);
-            transform: translateX(-22%);
+    -webkit-transform: translateX(-14%);
+            transform: translateX(-14%);
   }
   main .con_right .ad-6 .second h6 {
     font-size: 2rem;

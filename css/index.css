@@ -2109,8 +2109,8 @@ main .con_left .ad-1 .second img:nth-of-type(2) {
   position: absolute;
   top: 0;
   left: 22%;
-  -webkit-transform: translateX(-22%);
-          transform: translateX(-22%);
+  -webkit-transform: translateX(-14%);
+          transform: translateX(-14%);
 }
 
 main .con_left .ad-1 .second h6 {
@@ -2667,8 +2667,8 @@ main .con_right .ad-5 .second img:nth-of-type(2) {
   position: absolute;
   top: 0;
   left: 22%;
-  -webkit-transform: translateX(-22%);
-          transform: translateX(-22%);
+  -webkit-transform: translateX(-14%);
+          transform: translateX(-14%);
 }
 
 main .con_right .ad-5 .second h6 {
@@ -2946,8 +2946,8 @@ main .con_right .ad-6 .second img:nth-of-type(2) {
   position: absolute;
   top: 0;
   left: 22%;
-  -webkit-transform: translateX(-22%);
-          transform: translateX(-22%);
+  -webkit-transform: translateX(-14%);
+          transform: translateX(-14%);
 }
 
 main .con_right .ad-6 .second h6 {
